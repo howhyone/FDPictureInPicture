@@ -33,19 +33,12 @@
     self.player = [ZFPlayerController playerWithPlayerManager:playerManager containerView:self.view];
     self.player.controlView = self.controlView;
     self.player.assetURL = [NSURL URLWithString:_playUrlString];
-
-    if ([AVPictureInPictureController isPictureInPictureSupported]) {
-//        @try {
-//            NSError *error = nil;
-//            [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:&error];
-////            [[AVAudioSession sharedInstance] setActive:YES error:&error];
-//        } @catch (NSException *exception) {
-//            DDLogDebug(@"-------- AVAudioSession发生错误");
-//        }
-        self.pipController = [[AVPictureInPictureController alloc] initWithPlayerLayer:playerManager.playerLayer];
-//        DDLogDebug(@"----playerManager.playerLayer---- %@", playerManager.playerLayer);
-        self.pipController.delegate = self;
-    }
+    
+    #warning 在此处添加AVPictureInPictureController会有问题：正在播放视频时，APP进入后台后画中画会自动弹出
+//    if ([AVPictureInPictureController isPictureInPictureSupported]) {
+//        self.pipController = [[AVPictureInPictureController alloc] initWithPlayerLayer:playerManager.playerLayer];
+//        self.pipController.delegate = self;
+//    }
     [self.view bringSubviewToFront:self.pipBtn];
 }
 
@@ -59,7 +52,12 @@
             [self.pipController stopPictureInPicture];
             sender.selected = NO;
         } else {
-            [self.pipController startPictureInPicture];
+            ZFAVPlayerManager *playerManager = (ZFAVPlayerManager *)self.player.currentPlayerManager;
+            self.pipController = [[AVPictureInPictureController alloc] initWithPlayerLayer:playerManager.playerLayer];
+            self.pipController.delegate = self;
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self.pipController startPictureInPicture];
+            });
             sender.selected = YES;
         }
     }
