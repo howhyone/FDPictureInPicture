@@ -46,6 +46,27 @@
     
 }
 
+#pragma mark ------- 画中画代理，和画中画状态有关的逻辑 在代理中处理
+// 将开启画中画
+- (void)pictureInPictureControllerWillStartPictureInPicture:(AVPictureInPictureController *)pictureInPictureController {
+    // 处理 pipBtn 的选中状态、储存当前控制器
+}
+
+// 将关闭画中画
+- (void)pictureInPictureControllerWillStopPictureInPicture:(AVPictureInPictureController *)pictureInPictureController {
+    //
+}
+
+// 已经关闭画中画
+- (void)pictureInPictureControllerDidStopPictureInPicture:(AVPictureInPictureController *)pictureInPictureController {
+    // 处理 pipBtn 的选中状态、当前控制器置空
+}
+
+// 点击视频悬浮窗的复原按钮打开控制器
+- (void)pictureInPictureController:(AVPictureInPictureController *)pictureInPictureController restoreUserInterfaceForPictureInPictureStopWithCompletionHandler:(void (^)(BOOL))completionHandler {
+    // 处理控制器的跳转等
+}
+
 - (void)clickPipBtn:(UIButton *)sender {
     if ([AVPictureInPictureController isPictureInPictureSupported]) {
         if (self.pipController.isPictureInPictureActive) {
