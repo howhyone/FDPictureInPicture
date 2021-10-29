@@ -1,0 +1,31 @@
+PODS:
+  - FBSnapshotTestCase (2.1.4):
+    - FBSnapshotTestCase/SwiftSupport (= 2.1.4)
+  - FBSnapshotTestCase/Core (2.1.4)
+  - FBSnapshotTestCase/SwiftSupport (2.1.4):
+    - FBSnapshotTestCase/Core
+  - ReactiveObjC (3.1.1)
+  - studyModule (0.1.0):
+    - ReactiveObjC
+
+DEPENDENCIES:
+  - FBSnapshotTestCase
+  - studyModule (from `../`)
+
+SPEC REPOS:
+  trunk:
+    - FBSnapshotTestCase
+    - ReactiveObjC
+
+EXTERNAL SOURCES:
+  studyModule:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
+  ReactiveObjC: 011caa393aa0383245f2dcf9bf02e86b80b36040
+  studyModule: a91078126a733d55d1db6a974cfeb4d8f739efd4
+
+PODFILE CHECKSUM: 6390a937726cdee5495d686c9da22abe34a9af96
+
+COCOAPODS: 1.10.0
